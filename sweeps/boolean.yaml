@@ -1,0 +1,48 @@
+method: grid
+name: boolean
+parameters:
+  config:
+    values:
+      - configs/boolean.py
+  config.model.provider:
+    value: gemini
+  config.model.name:
+    values:
+      - gemini-3.1-flash-lite-preview
+      - gemini-3-flash-preview
+      - gemini-3.1-pro-preview
+      - claude-opus-4.7
+      - gpt-5.5
+  config.model.n_attempts:
+    values:
+      - 5
+  config.model.reasoning_effort:
+    values:
+      - low
+      - medium
+      - high
+  config.dataset.n_rules_per_size:
+    values:
+      - 3
+  config.dataset.n_translations_per_rule:
+    values:
+      - 4
+  config.dataset.n_shuffle_per_rule:
+    values:
+      - 4
+  config.seed:
+    values:
+      - 1
+      - 2
+      - 3
+  config.logger:
+    value: wandb
+program: run.py
+command:
+  - ${env}
+  - uv
+  - run
+  - --env-file
+  - .env
+  - ${program}
+  - ${args}
